@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "compo",
+  "version": "0.1.0",
+  "identifier": "com.diofdev.compo",
+
+  "build": {
+    "frontendDist": "../src"
+  },
+
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Compo",
+        "width": 1100,
+        "height": 660,
+        "resizable": false,
+        "devtools": false
+      }
+    ],
+    "security": {
+      "csp": null,
+      "dangerousDisableAssetCspModification": true
+    }
+  },
+
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "compression": "maximum",
+
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+
+    "windows": {
+      "webviewInstallMode": {
+        "type": "offlineInstaller"
+      }
+    }
+  },
+
+  "plugins": {
+    "fs": {
+      "requireLiteralLeadingDot": false
+    },
+    "http": null
+  }
+}

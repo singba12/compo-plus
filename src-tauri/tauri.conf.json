@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "compo-ecole",
+  "version": "0.1.0",
+  "identifier": "com.diofdev.compoplus",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Compo-Ecole",
+        "width": 1100,
+        "height": 660,
+        "resizable": false,
+        "devtools": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "dangerousDisableAssetCspModification": true
+    }
+  },
+  "bundle": {
+	"resources": ["models/u2net.onnx"],
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "fs": {
+      "requireLiteralLeadingDot": false
+    },
+    "http":null
+  }
+}
