@@ -1,0 +1,44 @@
+name: Build Tauri App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # 1. Récupérer le projet
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Installer Node
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # 3. Installer Rust
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      # 4. Installer dépendances frontend
+      - name: Install dependencies
+        run: npm install
+        working-directory: .
+
+      # 5. Build Tauri (TRÈS IMPORTANT chemin racine)
+      - name: Build Tauri app
+        run: npm run tauri build
+        working-directory: .
+
+      # 6. Upload du build Mac
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-build
+          path: |
+            src-tauri/target/release/bundle/macos
+            src-tauri/target/release/bundle/dmg
