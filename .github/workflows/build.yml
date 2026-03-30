@@ -24,17 +24,19 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
-      # 4. Installer dépendances frontend
+      # 4. ⚠️ AJOUT IMPORTANT (compatibilité macOS 10.15)
+      - name: Set macOS deployment target
+        run: echo "MACOSX_DEPLOYMENT_TARGET=10.15" >> $GITHUB_ENV
+
+      # 5. Installer dépendances
       - name: Install dependencies
         run: npm install
-        working-directory: .
 
-      # 5. Build Tauri (TRÈS IMPORTANT chemin racine)
+      # 6. Build Tauri
       - name: Build Tauri app
         run: npm run tauri build
-        working-directory: .
 
-      # 6. Upload du build Mac
+      # 7. Upload du build
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
